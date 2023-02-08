@@ -119,7 +119,7 @@ _file.forEach(item => {
 
     if (!_file2.includes(item)) {
         file.copy('.\\plugins\\SkyBlock\\structures\\' + item, '.\\behavior_packs\\vanilla\\structures');
-        log(`[SkyBlock] 空岛文件 {${item}} 加载成功 ... `);
+        log(`[SkyBlock] 空島文件 {${item}} 加載成功 ... `);
     }
 
 })
@@ -130,7 +130,7 @@ _file.forEach(item => {
 
 let plugins = File.getFilesList(".\\plugins\\SkyBlock\\plugins")
 
-colorLog("green", "正在加载空岛扩展插件...")
+colorLog("green", "正在加載空島擴展插件...")
 
 
 const jsFilenames = plugins.filter(filename => filename.endsWith('.js'));
@@ -140,11 +140,11 @@ setTimeout(() => {
     let count = 0
     jsFilenames.forEach((item) => {
         require(`./SkyBlock/plugins/${item}`)
-        colorLog("green", `${item} 加载成功`)
+        colorLog("green", `${item} 加載成功`)
         count++
     })
 
-    colorLog("green", `加载 ${count} 个扩展... `)
+    colorLog("green", `加載 ${count} 個擴展... `)
 
 }, 100)
 
@@ -166,7 +166,7 @@ setInterval(() => {
 
                 if (!IsLandEvent.$emit("inLand", [item, xuid])) return
 
-                let str = item.xuid == xuid ? `` : `你正在${CreateLand.GetLandData(xuid)["name"]}的岛屿`
+                let str = item.xuid == xuid ? `` : `你正在${CreateLand.GetLandData(xuid)["name"]}的島嶼`
                 item.tell(str, 4)
 
                 return false
@@ -193,7 +193,7 @@ setInterval(() => {
 
 
 function ST(player, text, type) {
-    player.tell("§b[空岛] §a" + text + "", type);
+    player.tell("§b[空島] §a" + text + "", type);
 }
 
 
@@ -218,7 +218,7 @@ function Create(player, type) {
 function NewLand(player) {
     if (player.whetherLand()) {
         if (!IsLandEvent.$emit("onRunIs", [player])) return
-        ST(player, "§a你已经有一个岛屿了")
+        ST(player, "§a你已經有一個島嶼了")
 
     } else {
         let fm = mc.newCustomForm();
@@ -226,14 +226,14 @@ function NewLand(player) {
         InitFig.FIG.file.forEach(key => {
             newfile.push(key.name)
         });
-        fm.setTitle("空岛");
-        fm.addLabel('选择你要创建的空岛类型:');
-        fm.addDropdown("选项:", newfile);
+        fm.setTitle("空島");
+        fm.addLabel('選擇你要創建的空島類型:');
+        fm.addDropdown("選項:", newfile);
         player.sendForm(fm, (player, data) => {
             if (data != null) {
-                ST(player, "§a正在为你创建岛屿");
+                ST(player, "§a正在為你創建島嶼");
                 Create(player, InitFig.FIG.file[data[1]])
-                ST(player, "§a创建成功 输入/is 打开空岛菜单");
+                ST(player, "§a创建成功 輸入/is 打開空島菜單");
             }
         })
     }
@@ -245,7 +245,7 @@ function NewLand(player) {
 
 
 // 
-mc.regPlayerCmd("is", "创建空岛", (player) => {
+mc.regPlayerCmd("is", "創建空島", (player) => {
     NewLand(player)
 });
 
@@ -255,25 +255,25 @@ mc.regPlayerCmd("is", "创建空岛", (player) => {
 
 let Warp_Method = require("./SkyBlock/lib/method/warp")
 
-mc.regPlayerCmd("is warp create", "新建岛屿传送点", (player) => {
+mc.regPlayerCmd("is warp create", "新建島嶼傳送點", (player) => {
     Warp_Method.CreateWarp(player)
 });
-mc.regPlayerCmd("is warp remove", "删除岛屿传送点", (player) => {
+mc.regPlayerCmd("is warp remove", "刪除島嶼傳送點", (player) => {
     Warp_Method.RemoveWarp(player)
 });
-mc.regPlayerCmd("is warp set", "传送点设置", (player) => {
+mc.regPlayerCmd("is warp set", "傳送點設置", (player) => {
     Warp_Method.SetupWarp(player)
 });
-mc.regPlayerCmd("is warp get", "获取岛屿列表", (player) => {
+mc.regPlayerCmd("is warp get", "獲取島嶼列表", (player) => {
     Warp_Method.GetWarp(player)
 });
-mc.regPlayerCmd("is warp list", "公开岛屿列表", (player) => {
+mc.regPlayerCmd("is warp list", "公開島嶼列表", (player) => {
     Warp_Method.GetWarpList(player)
 });
-mc.regPlayerCmd("is spawn", "设置岛屿返回点", (player) => {
+mc.regPlayerCmd("is spawn", "設置島嶼返回點", (player) => {
     Warp_Method.SetSpawn(player)
 });
-mc.regPlayerCmd("is home", "返回岛屿", (player) => {
+mc.regPlayerCmd("is home", "返回島嶼", (player) => {
     Warp_Method.ReturnLand(player)
 });
 
@@ -291,16 +291,16 @@ mc.listen("onRespawn", (player) => {
 
 let Level_Method = require("./SkyBlock/lib/method/level")
 
-mc.regPlayerCmd("is top", "	岛屿等级排行榜​", (player) => {
+mc.regPlayerCmd("is top", "	島嶼等級排行榜​", (player) => {
     Level_Method.GetTop(player)
 });
-mc.regPlayerCmd("is level", "计算岛屿等级", (player) => {
+mc.regPlayerCmd("is level", "計算島嶼等級", (player) => {
     Level_Method._Clac(player)
 });
-mc.regPlayerCmd("is value", "查看手持方块价值​", (player) => {
+mc.regPlayerCmd("is value", "查看手持方塊價值​", (player) => {
     Level_Method.Query_Value(player)
 });
-mc.regPlayerCmd("is setvalue", "设置手持方块价值​", (player) => {
+mc.regPlayerCmd("is setvalue", "設置手持方塊價值​", (player) => {
     Level_Method.SetQuery(player)
 }, 1);
 
@@ -320,12 +320,12 @@ setInterval(() => {
 
 
 
-mc.regPlayerCmd("is delete", "删除岛屿", (player) => {
+mc.regPlayerCmd("is delete", "刪除島嶼", (player) => {
     if (CreateLand.GetLandData(player.xuid) == null && InitFig.INVITED_DATA[player.xuid] == null) {
-        ST(player, "你还没有岛屿!");
+        ST(player, "你還沒有島嶼!");
         return false
     }
-    player.sendModalForm('删除岛屿', "你确定删除岛屿?", "确定", "取消", (player, result) => {
+    player.sendModalForm('刪除島嶼', "你確定刪除島嶼?", "確定", "取消", (player, result) => {
         if (result && PlayerData.GetData(player.xuid)["reset_limit"] >= 1) {
             if (CreateLand.GetLandData(player.xuid)) {
                 CreateLand.RemoveLandData(player.xuid)
@@ -336,7 +336,7 @@ mc.regPlayerCmd("is delete", "删除岛屿", (player) => {
             Warp.RemoveData(player.xuid)
             Level.RemoveLevel(player.xuid)
             player.teleport(InitFig.RESET.x, InitFig.RESET.y, InitFig.RESET.z, 0);
-            ST(player, "已删除你的岛屿");
+            ST(player, "已刪除你的島嶼");
 
         }
     })
@@ -368,13 +368,13 @@ function StructurePlayer(player, name, xuid) {
 let Permission_Method = require("./SkyBlock/lib/method/permissions")
 
 
-mc.regPlayerCmd("is setworld", "设置世界权限", (player) => {
+mc.regPlayerCmd("is setworld", "設置世界權限", (player) => {
 
     let Prems = InitFig.LAND_WORLD
     let Prems_List = Object.keys(Prems)
     let fm = mc.newCustomForm()
-    fm.setTitle("设置世界权限")
-    fm.addLabel("世界权限控制:")
+    fm.setTitle("設置世界權限")
+    fm.addLabel("世界權限控制:")
 
     Prems_List.forEach(key => fm.addSwitch(Language.data["permissions"][key], Prems[key]))
 
@@ -391,7 +391,7 @@ mc.regPlayerCmd("is setworld", "设置世界权限", (player) => {
 
         InitFig.ISLAND.set("world", obj)
 
-        player.tell("§b§l" + "权限设置成功" + "");
+        player.tell("§b§l" + "權限設置成功" + "");
 
     })
 
@@ -401,30 +401,30 @@ mc.regPlayerCmd("is setworld", "设置世界权限", (player) => {
 
 
 
-mc.regPlayerCmd("is permission", "岛屿权限设置", (player) => {
+mc.regPlayerCmd("is permission", "島嶼權限設置", (player) => {
     if (CreateLand.GetLandData(player.xuid)) {
         Permission_Method.Set_Permissions(player)
     } else {
-        ST(player, "§c无权使用!")
+        ST(player, "§c無權使用!")
     }
 });
 
 // 岛屿邀请
 let Invite_method = require("./SkyBlock/lib/method/invite")
 
-mc.regPlayerCmd("is invite", "发送岛屿邀请", (player, args) => {
+mc.regPlayerCmd("is invite", "發送島嶼邀請", (player, args) => {
     if (mc.getPlayer(args[0])) {
         Invite_method.invite(player, args[0])
     } else {
-        ST(player, "§c请输入正确玩家名,并确保被邀请玩家在线")
+        ST(player, "§c請輸入正確玩家名,並確保被邀請玩家在線")
     }
 });
 
-mc.regPlayerCmd("is accept", "接受岛屿邀请", (player) => {
+mc.regPlayerCmd("is accept", "接受島嶼邀請", (player) => {
     Invite_method.accept(player)
 });
 
-mc.regPlayerCmd("is refuse", "拒绝岛屿邀请", (player) => {
+mc.regPlayerCmd("is refuse", "拒絕島嶼邀請", (player) => {
     Invite_method.refuse(player)
 });
 
@@ -433,6 +433,6 @@ mc.regPlayerCmd("is refuse", "拒绝岛屿邀请", (player) => {
 
 
 log("==============================")
-log("[BE - ISLAND]  LOADING ... ")
-log("作者:  ChuXiao ")
+log("空島插件已在運行")
+log("杯子老大好")
 log("==============================")
