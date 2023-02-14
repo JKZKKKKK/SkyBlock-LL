@@ -24,7 +24,7 @@ Invite = {
         if (!PL[player.xuid]) {
             if (mc.getPlayer(Invited)) {
                 let pl = mc.getPlayer(Invited)
-                ST(pl, `玩家: ${player.name} 向你发送了一个岛屿邀请 , 有效期30秒 , 接受/is invite accept 拒绝/is invite refuse §c接受邀请会删除当前岛屿 , 请慎重考虑!`)
+                ST(pl, `玩家: ${player.name} 向你發送了一個島嶼邀請 , 有效期30秒 , 接受/is invite accept 拒絕/is invite refuse §c接受邀請會刪除當前島嶼 , 請慎重考慮!`)
 
                 PL[player.xuid] = pl.xuid;
                 PLD[pl.xuid] = player.xuid;
@@ -42,7 +42,7 @@ Invite = {
 
             }
         } else {
-            ST(player, '§c请勿重复操作')
+            ST(player, '§c請勿重複操作')
         }
     },
 
@@ -72,10 +72,10 @@ Invite = {
 
                 this.Save();
             } else {
-                ST(player, '§c岛屿人数已达上限')
+                ST(player, '§c島嶼人數已達上限')
             }
         } else {
-            ST(player, '§c你没有收到岛屿邀请')
+            ST(player, '§c你沒有收到島嶼邀請')
         }
     },
 
@@ -85,7 +85,7 @@ Invite = {
             delete PLD[player.xuid]
 
         } else {
-            ST(player, '§c你没有收到岛屿邀请')
+            ST(player, '§c你沒有收到島嶼邀請')
         }
     },
     Remove(xuid) {
